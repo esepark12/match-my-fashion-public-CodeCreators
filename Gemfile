@@ -4,7 +4,8 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-
+#mimemagic 0.3.5
+gem 'mimemagic', '0.3.5', git: 'https://github.com/mimemagicrb/mimemagic', ref: '01f92d8'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
 # Use postgresql as the database for Active Record
@@ -74,3 +75,6 @@ gem 'omniauth-facebook'
 gem 'city-state'
 gem 'geocoder'
 ruby '2.4.1'
+
+#for Google Authentication
+gem 'omniauth-google-oauth2'
