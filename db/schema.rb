@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180427172826) do
+ActiveRecord::Schema.define(version: 20210414190158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,15 @@ ActiveRecord::Schema.define(version: 20180427172826) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_models_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.string   "session_id", null: false
+    t.text     "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
+    t.index ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
   end
 
   create_table "specific_designers", force: :cascade do |t|
@@ -145,6 +154,8 @@ ActiveRecord::Schema.define(version: 20180427172826) do
     t.string   "name"
     t.text     "image"
     t.string   "password"
+    t.string   "google_token"
+    t.string   "google_refresh_token"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
