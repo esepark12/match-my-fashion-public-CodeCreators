@@ -6,4 +6,6 @@ class ApplicationController < ActionController::Base
     @landing = true
     @users = GeneralInfo.order(updated_at: :desc).limit(20)
   end
+  # Used to enable redirect to New User page after sign in
+
 end
