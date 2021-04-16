@@ -16,8 +16,23 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     puts "Hello do I get here???"
 
     #check if user is in our database or not
+    if LoginInfo.exists?(:email => @user[:email])
+      puts "User exists in our database!!!!!!!!!!!!!!"
+      @login_user = LoginInfo.find_by(email: @user[:email])
+      userKey = @login_user.userKey
+      puts "The user is #{@login_user}"
+    else #Add user to the database
+      puts "User doesn't exist in our database!!!!!!!!!!!!"
+      @login_user = LoginInfo.new(:email => @user[:email], :password => @user[:password], :password_confirmation => @user[:password])
+      userKey = SecureRandom.hex(10)
+      @login_user.userKey = userKey
+      puts "Successfully created user in our database!!!!!!"
+      if @login_user.save
+        puts "You Have Successfully Signed up! Welcome!"
 
-    userKey = SecureRandom.hex(10)
+      end
+    end
+
     session[:current_user_key] = userKey
   end
 
