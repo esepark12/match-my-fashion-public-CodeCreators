@@ -6,12 +6,12 @@ class ApplicationController < ActionController::Base
     @landing = true
     @users = GeneralInfo.order(updated_at: :desc).limit(20)
   end
-  # Used to enable redirect to New User page after sign in
+  # Enables redirect to New User page after sign in
   def after_sign_in_path_for(resource)
-    @fbuser = resource
+    @user = resource
     puts "I'm here!!!!!!!!!!!!!!!!!!!!!!!1"
-    puts "User email is  #{@fbuser[:email]}"
-    if LoginInfo.exists?(:email => @fbuser[:email])
+    puts "User email is  #{@user[:email]}"
+    if LoginInfo.exists?(:email => @user[:email])
       puts "I'm here22222!!!!!!!!!!!!!!!!!!!!!!!1"
       super #redirect to where the user came from if not a new user
     else

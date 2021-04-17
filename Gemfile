@@ -72,9 +72,8 @@ gem 'simplecov', :require => false, :group => :test
 gem 'simplecov-rcov'
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 gem 'city-state'
 gem 'geocoder'
 ruby '2.4.1'
 
-#for Google Authentication
-gem 'omniauth-google-oauth2'
