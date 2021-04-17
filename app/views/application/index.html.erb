@@ -244,6 +244,20 @@
       <%= link_to "Logout", destroy_user_session_path, method: :delete %>
     <% end %>
 
+    <!-- LoginInfo DB (application_controller.rb)-->
+    <h3>LoginInfo DB</h3>
+    <% @login_infos.all.each do |user| %>
+      <br>
+      <%= user.id %>
+      <%= user.email %>
+      <%= user.userKey %>
+    <% end %>
+    <h3>GeneralInfo DB</h3>
+    <% @general_infos.all.each do |guser| %>
+      <%= guser.id %> : <%= guser.first_name %> - <%= guser.userKey %> ,
+    <% end %>
+    <!-- End of LoginInfo DB-->
+
 	<!-- THE FOOTER -->
 	<footer>
 		<div class="footer-main">

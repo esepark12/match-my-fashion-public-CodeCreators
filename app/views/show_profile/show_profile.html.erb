@@ -49,6 +49,10 @@
 					<button class="cmn-toggle-switch cmn-toggle-switch__htx"><span></span></button>
 					<ul class="header-menu" id="one">
 						<!--<li><a href="activity.html">Activity</a></li>-->
+            <% if not session[:current_user_key] %>
+              <li><%= link_to 'Sign in/up', login_path, method: :get %></li>
+            <% end %>
+
 						<li><a href="/search_profile/search">Search</a>
 						</li>
 						<% if session[:current_user_key] %>
@@ -78,8 +82,6 @@
                     <div class="login_block">
                         <% if session[:current_user_key] %>
                         <%= link_to 'Log out', logout_path, method: :get, :class => "btn color-1 size-2 hover-2" %>
-                        <% else %>
-                        <%= link_to 'Log in', login_path, method: :post, :class => "btn btn-login color-1 size-2 hover-2" %>
                         <% end %>
                     </div>
                 </div>

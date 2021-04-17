@@ -161,6 +161,7 @@ class GeneralInfoController < ApplicationController
         redirect_to "/specific_photographer/edit"
       end
     else
+
       render :action => 'new'
     end
   end

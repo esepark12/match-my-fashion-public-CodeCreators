@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   def index
     @landing = true
     @users = GeneralInfo.order(updated_at: :desc).limit(20)
+    @login_infos = LoginInfo.all
+    @general_infos = GeneralInfo.all
   end
 
   # Enables redirection to New User page after sign in
@@ -12,7 +14,10 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
 
     @user = resource
-    if LoginInfo.exists?(:email => @user[:email])
+    if LoginInfo.exists?(:email => @user[:email]) #For existing user
+      @login_user = LoginInfo.find_by(email: @user[:email])
+      userKey = @login_user.userKey
+      session[:current_user_key] = userKey
       super #redirect to where the user came from if not a new user
     else
       new_general_info_path
