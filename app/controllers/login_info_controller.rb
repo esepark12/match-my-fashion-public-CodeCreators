@@ -82,6 +82,7 @@ class LoginInfoController < ApplicationController
   # Associated with the view used for login_submit
   def login
     @login_info = LoginInfo.new
+    #render :template => :'new/login'
   end
   
   # Checks the email & password input against existing LoginInfo objects in database

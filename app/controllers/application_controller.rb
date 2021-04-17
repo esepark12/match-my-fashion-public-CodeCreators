@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     @users = GeneralInfo.order(updated_at: :desc).limit(20)
   end
 
-  # Enables redirection to New User page after sign in if new user
+  # Enables redirection to New User page after sign in
   # by overriding sign_in_and_redirect in omniauth_callbacks controller
   def after_sign_in_path_for(resource)
 
