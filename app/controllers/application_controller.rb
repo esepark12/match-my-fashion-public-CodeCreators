@@ -6,16 +6,15 @@ class ApplicationController < ActionController::Base
     @landing = true
     @users = GeneralInfo.order(updated_at: :desc).limit(20)
   end
-  # Enables redirect to New User page after sign in
+
+  # Enables redirection to New User page after sign in if new user
+  # by overriding sign_in_and_redirect in omniauth_callbacks controller
   def after_sign_in_path_for(resource)
+
     @user = resource
-    puts "I'm here!!!!!!!!!!!!!!!!!!!!!!!1"
-    puts "User email is  #{@user[:email]}"
     if LoginInfo.exists?(:email => @user[:email])
-      puts "I'm here22222!!!!!!!!!!!!!!!!!!!!!!!1"
       super #redirect to where the user came from if not a new user
     else
-      puts "I'm here33333333!!!!!!!!!!!!!!!!!!!!!!!1"
       new_general_info_path
     end
   end
