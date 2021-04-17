@@ -48,6 +48,5 @@ class LoginInfo < ApplicationRecord
     end
   end
 
-
 end
 
