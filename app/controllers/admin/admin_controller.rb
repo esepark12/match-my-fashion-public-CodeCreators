@@ -8,7 +8,7 @@ module Admin
       #GeneralInfo.load_Job_File #No longer needed- Job file is loaded in initializer
       @hasPermission = false 
       if (session[:current_user_key] != nil && GeneralInfo.exists?(:userKey => session[:current_user_key]))
-	general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+	      general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
         @hasPermission = general_info.is_admin
       end
       if(@hasPermission == false)
@@ -21,7 +21,7 @@ module Admin
 
       @hasPermission = false
       if (session[:current_user_key] != nil && GeneralInfo.exists?(:userKey => session[:current_user_key]))
-	general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+	      general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
         @hasPermission = general_info.is_admin
       end
       if(@hasPermission == false)
@@ -34,7 +34,7 @@ module Admin
       if(@potentialJob != nil && @potentialJob != "")
         @potentialJob = @potentialJob.parameterize(separator: '_').upcase_first
         if(GeneralInfo.check_Job?(@potentialJob) == false)
-	  GeneralInfo.create_Job(@potentialJob)
+          GeneralInfo.create_Job(@potentialJob)
           init = @potentialJob.constantize.new
           flash.now[:notice] = @potentialJob.titleize + " has been created.\nCurrent jobs are : " + GeneralInfo.see_Jobs.join(",")
 	else
@@ -54,7 +54,7 @@ module Admin
 
       @hasPermission = false
       if (session[:current_user_key] != nil && GeneralInfo.exists?(:userKey => session[:current_user_key]))
-	general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
+	      general_info = GeneralInfo.find_by(userKey: session[:current_user_key])
         @hasPermission = general_info.is_admin
       end
       if(@hasPermission == false)
