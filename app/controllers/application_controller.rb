@@ -18,8 +18,9 @@ class ApplicationController < ActionController::Base
       @login_user = LoginInfo.find_by(email: @user[:email])
       userKey = @login_user.userKey
       session[:current_user_key] = userKey
-      super #redirect to where the user came from if not a new user
+      super #redirect to where the user came from
     else
+      session[:current_login_user]=@user
       new_general_info_path
     end
   end

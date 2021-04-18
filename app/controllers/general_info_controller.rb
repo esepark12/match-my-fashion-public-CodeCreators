@@ -131,7 +131,18 @@ class GeneralInfoController < ApplicationController
       flash[:notice] = error_statement
       redirect_to new_general_info_path and return
     end
-      
+
+
+    # Add user to LoginInfo DB here to
+    # synchronize with GeneralInfo DB
+    current_user = session[:current_login_user]
+    login_user = LoginInfo.new(:email => current_user["email"], :password => current_user["password"], :password_confirmation => current_user["password"])
+    userKey = SecureRandom.hex(10)
+    login_user.userKey = userKey
+    login_user.save!
+    session[:current_user_key] = userKey
+    session.delete(:current_login_user)
+
     # Creates a GeneralInfo object & assigns userKey to be the session key of the current user
     @general_info = GeneralInfo.new(general_info_params)
     @general_info.userKey = session[:current_user_key]
@@ -149,7 +160,9 @@ class GeneralInfoController < ApplicationController
       @general_info.is_admin = true
     end
 
-    if @general_info.save
+    if @general_info.save!
+
+      # Redirect to specific profession edit page
       if $template_name == "Designer"
         @general_info.update_attribute(:specific_profile_id,1)
         redirect_to "/specific_designer/edit"
