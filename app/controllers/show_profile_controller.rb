@@ -22,6 +22,8 @@ class ShowProfileController < ApplicationController
           @login_user_true = session[:current_user_key]
         end
 
+        @username = @general_info[:first_name]
+
 	@on_Own = false
 	if session[:current_user_key] == user_key_current
           @on_Own = true

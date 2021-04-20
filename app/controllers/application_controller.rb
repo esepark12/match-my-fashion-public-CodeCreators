@@ -5,11 +5,16 @@ class ApplicationController < ActionController::Base
   def index
     @landing = true
     @users = GeneralInfo.order(updated_at: :desc).limit(20)
+    if session[:current_user_key]
+      current_user = GeneralInfo.find_by(userKey: session[:current_user_key])
+      @username = current_user[:first_name]
+    end
+    #To display DB, delete this later!
     @login_infos = LoginInfo.all
     @general_infos = GeneralInfo.all
   end
 
-  # Enables redirection to New User page after sign in
+  # Enables redirection to general_info new page after sign in
   # by overriding sign_in_and_redirect in omniauth_callbacks controller
   def after_sign_in_path_for(resource)
 

@@ -56,7 +56,7 @@
 						<li><a href="/search_profile/search">Search</a>
 						</li>
 						<% if session[:current_user_key] %>
-							<li><a href="/show_profile">My Profile</a></li>
+							<li><a href="/show_profile"><%= @username %></a></li>
 							<% if @on_Own %>
 								<li><a href="/general_info/edit">Edit Profile</a>
 									<ul>
