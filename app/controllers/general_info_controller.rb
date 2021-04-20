@@ -141,7 +141,6 @@ class GeneralInfoController < ApplicationController
     login_user.userKey = userKey
     login_user.save!
     session[:current_user_key] = userKey
-    session.delete(:current_login_user)
 
     # Creates a GeneralInfo object & assigns userKey to be the session key of the current user
     @general_info = GeneralInfo.new(general_info_params)
@@ -161,7 +160,9 @@ class GeneralInfoController < ApplicationController
     end
 
     if @general_info.save!
-
+      # Send Verification Email upon successful sign-up
+      UserMailer.welcome_email(@general_info,current_user).deliver_now!
+      session.delete(:current_login_user)
       # Redirect to specific profession edit page
       if $template_name == "Designer"
         @general_info.update_attribute(:specific_profile_id,1)
