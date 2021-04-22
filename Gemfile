@@ -61,11 +61,14 @@ group :test, :development do
   gem 'byebug', platform: :mri
 end
 
+gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
+#gem "omniauth-rails_csrf_protection"
+
 gem "rails-controller-testing"
 gem "factory_bot_rails", "~> 4.0"
 gem 'simplecov', :require => false, :group => :test
 gem 'simplecov-rcov'
-gem 'devise'
+#gem 'devise'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'city-state'
