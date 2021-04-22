@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="<%= asset_path "idangerous.swiper.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "jquery-ui.css"%>">
 		<link rel="stylesheet" href="<%= asset_path "stylesheet.css"%>">
-        <link rel="stylesheet" href="<%= asset_path "profile.css"%>">
+    <link rel="stylesheet" href="<%= asset_path "profile.css"%>">
 
 	</head>
 	<body >
@@ -30,7 +30,7 @@
 			  </span>
 			</p>
 		</div>
-    </div>
+  </div>
 	<!-- THE HEADER -->
 	<header>
 
@@ -51,7 +51,7 @@
             <% if session[:current_user_key] %>
               <li><a href="/show_profile"><%= @username %></a></li>
             <% else %>
-              <li><%= link_to 'Sign in/up', login_path, method: :get %></li>
+              <li><%= link_to 'Sign in/up', login_path, method: :get, id: 'sign_in_up' %></li>
             <% end %>
 						<li><a href="/search_profile/search">Search</a>
 
