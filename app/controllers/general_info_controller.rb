@@ -136,6 +136,8 @@ class GeneralInfoController < ApplicationController
     # Add user to LoginInfo DB here to
     # synchronize with GeneralInfo DB
     current_user = session[:current_login_user]
+    puts "current user is #{current_user}"
+    puts "user password is #{current_user["password"]}"
     login_user = LoginInfo.new(:email => current_user["email"], :password => current_user["password"], :password_confirmation => current_user["password"])
     userKey = SecureRandom.hex(10)
     login_user.userKey = userKey
